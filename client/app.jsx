@@ -1,17 +1,21 @@
-var sortBy='deadline';
 App = React.createClass({
 
 	mixins: [ReactMeteorData],
+
+	getInitialState() {
+	    return {
+	      sortBy: 'deadline'
+	    }
+	  },
 	
 	getMeteorData() {
-		console.log("TYPE =" + sortBy);
-	    if(sortBy==='priority'){
+	    if(this.state.sortBy ==='priority'){
 	      	return {
 	      	tasks: Tasks.find({},{sort:{priority: -1}}).fetch(),
 	      	currentUser: Meteor.user()
 	      	}
 	    }
-	    else if(sortBy==='deadline'){
+	    else if(this.state.sortBy==='deadline'){
 	      	return {
 	      	tasks: Tasks.find({},{sort:{deadline: 1}}).fetch(),
 	      	currentUser: Meteor.user()
@@ -36,8 +40,11 @@ App = React.createClass({
 	},
 
 	handleSort(){
-		sortBy = ReactDOM.findDOMNode(this.refs.sort).value;
-		console.log("CHANGE TO " + sortBy);
+		var sortValue = ReactDOM.findDOMNode(this.refs.sort).value;
+		console.log("CHANGE TO " + sortValue);
+		 this.setState({
+     		 sortBy: sortValue
+    });
 	},
 
 	handleSubmit(event) {
@@ -47,7 +54,6 @@ App = React.createClass({
 	    var deadline = ReactDOM.findDOMNode(this.refs.deadline).value;
 	    var priority = ReactDOM.findDOMNode(this.refs.priority).value;
 	    Meteor.call("addTask",text,deadline,priority);
-
 
 	    // Clear form
 	    ReactDOM.findDOMNode(this.refs.textInput).value = "";
