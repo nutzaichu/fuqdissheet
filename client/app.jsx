@@ -5,7 +5,7 @@ App = React.createClass({
 	getMeteorData() {
 		
 	    return {
-	      tasks: Tasks.find({}, {sort: {createdAt: -1}}).fetch(),
+	      tasks: Tasks.find({}, {sort: {sortBy: -1}}).fetch(),
 	      currentUser: Meteor.user()
 	    }
 	},
@@ -13,16 +13,16 @@ App = React.createClass({
 	renderTasks() {
 	    // Get tasks from this.data.tasks
 	    return this.data.tasks.map((task) => {	 
-	    	console.log(task)
 	      return <Task
 	        key={task._id}
 	        task={task} />;
 	    });
 	},
-	
-	handleSort(event){
-		event.preventDefault();
+
+	handleSort(){
+		console.log("TEST");
 		sortBy = ReactDOM.findDOMNode(this.refs.sort).value;
+		
 	},
 
 	handleSubmit(event) {
@@ -45,7 +45,7 @@ App = React.createClass({
 			<h1>Fuq dis sheet</h1>
 			<AccountsUIWrapper />
 			
-			<select ref="sort" onchange={this.handleSort}>
+			<select ref="sort" onchange={this.handleSort}} >
 			  <option value="deadline">deadline</option>
 			  <option value="priority">priority</option>
 			  <option value="createdAt">dateCreated</option>
