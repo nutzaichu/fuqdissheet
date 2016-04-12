@@ -1,18 +1,34 @@
+var sortBy='deadline';
 App = React.createClass({
 
 	mixins: [ReactMeteorData],
 	
 	getMeteorData() {
-		
-	    return {
-	      tasks: Tasks.find({}, {sort: {sortBy: -1}}).fetch(),
-	      currentUser: Meteor.user()
+		console.log("TYPE =" + sortBy);
+	    if(sortBy==='priority'){
+	      	return {
+	      	tasks: Tasks.find({},{sort:{priority: -1}}).fetch(),
+	      	currentUser: Meteor.user()
+	      	}
+	    }
+	    else if(sortBy==='deadline'){
+	      	return {
+	      	tasks: Tasks.find({},{sort:{deadline: 1}}).fetch(),
+	      	currentUser: Meteor.user()
+	      	}
+	    }
+	    else{
+	      	return {
+	      	tasks: Tasks.find({},{sort:{createdAt: -1}}).fetch(),
+	      	currentUser: Meteor.user()
+	      	}
 	    }
 	},
 
 	renderTasks() {
 	    // Get tasks from this.data.tasks
 	    return this.data.tasks.map((task) => {	 
+	      //console.log(task);
 	      return <Task
 	        key={task._id}
 	        task={task} />;
@@ -20,9 +36,8 @@ App = React.createClass({
 	},
 
 	handleSort(){
-		console.log("TEST");
 		sortBy = ReactDOM.findDOMNode(this.refs.sort).value;
-		
+		console.log("CHANGE TO " + sortBy);
 	},
 
 	handleSubmit(event) {
@@ -42,10 +57,10 @@ App = React.createClass({
 		return (
 			<div className="container">
 			<header>
-			<h1>Fuq dis sheet</h1>
+			<h1>Fuq dis sheet : I'M DONE!</h1>
 			<AccountsUIWrapper />
 			
-			<select ref="sort" onchange={this.handleSort}} >
+			<select ref="sort" onChange={this.handleSort} >
 			  <option value="deadline">deadline</option>
 			  <option value="priority">priority</option>
 			  <option value="createdAt">dateCreated</option>
@@ -65,11 +80,11 @@ App = React.createClass({
 			/>
 
 			<select ref="priority">
-			<option value="p5">5</option>
-			<option value="p4">4</option>
-			<option value="p3">3</option>
-			<option value="p2">2</option>
-			<option value="p1">1</option>
+			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
 			</select>
 
 			<input type="submit" value="submit"/>

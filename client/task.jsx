@@ -3,12 +3,22 @@
    propTypes: {
     task: React.PropTypes.object.isRequired,
    },
-   
-   joinTask() {
+  
+  updateProgress(){
+    var newProgress = ReactDOM.findDOMNode(this.refs.newProgress).value;
+    Meteor.call("updateProgress",this.props.task._id,newProgress);
+  },
+
+  joinTask() {
 	    Meteor.call("addWorker",this.props.task._id);
 	},
 
+
    render() {
+    var showInput = false;
+    if(Meteor.userId()) showInput = true;
+    else showInput = false;
+
    	var dif = moment(this.props.task.deadline).fromNow();
    	return (
          <li>
@@ -17,9 +27,15 @@
            {this.props.task.username} &nbsp; 
            {dif} &nbsp; 
            {this.props.task.priority} &nbsp; 
-           {this.props.task.worker} &nbsp; 
-         </span>
-         <button className="delete" onClick={this.joinTask}>Join</button>
+           {showInput ? <input type="range" min="0" max="100" 
+                  ref="newProgress"
+                  value={this.props.task.progress} 
+                  onChange={this.updateProgress} />
+                  : ''}
+           &nbsp; 
+           {this.props.task.worker} &nbsp;  
+           {showInput ? <button className="delete" onClick={this.joinTask}>Join</button> : ''}
+           </span>
          </li>
          )
    }
