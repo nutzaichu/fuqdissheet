@@ -62,44 +62,53 @@ App = React.createClass({
 	render() {
 		return (
 			<div className="container">
-			<header>
-			<h1>Fuq dis sheet : I'M DONE!</h1>
-			<AccountsUIWrapper />
-			
-			<select ref="sort" onChange={this.handleSort} >
-			  <option value="deadline">deadline</option>
-			  <option value="priority">priority</option>
-			  <option value="createdAt">dateCreated</option>
-			</select>
+			<div className="row">
+    			<div className="four columns">
+    				<img src="logo.png"/>
+    			</div>
+    			<div className="eight columns">
+	    			<header>		
+						<AccountsUIWrapper />
+						
+						<select ref="sort" onChange={this.handleSort} >
+						  <option value="deadline">deadline</option>
+						  <option value="priority">priority</option>
+						  <option value="createdAt">dateCreated</option>
+						</select>
 
-			<form className="new-task" onSubmit={this.handleSubmit} >
-			
-			<input
-			type="text"
-			ref="textInput"
-			placeholder="Type to add new tasks" 
-			/>
+						<form className="new-task" onSubmit={this.handleSubmit} >
+						
+							<input
+							type="text"
+							ref="textInput"
+							placeholder="Type to add new tasks" 
+							/>
 
-			<input 
-			type="date" 
-			ref="deadline"
-			/>
+							<input 
+							type="date" 
+							ref="deadline"
+							/>
 
-			<select ref="priority">
-			<option value="5">5</option>
-			<option value="4">4</option>
-			<option value="3">3</option>
-			<option value="2">2</option>
-			<option value="1">1</option>
-			</select>
+							<select ref="priority">
+							<option value="5">5 - Emergency</option>
+							<option value="4">4 - High Priority</option>
+							<option value="3">3 - Medium Priority</option>
+							<option value="2">2 - Low Priority</option>
+							<option value="1">1 - No Priority</option>
+							</select>
 
-			<input type="submit" value="submit"/>
-			</form>
-			</header>
-		<ul>
-          {this.renderTasks()}
-        </ul>
-      </div>
-      );
+						<input type="submit" value="submit"/>
+						</form>
+					</header>
+					<ul>
+		          {this.renderTasks()}
+		        </ul>
+
+			    </div>
+			  </div>
+				
+				
+	      </div>
+	      );
 	}
 });
