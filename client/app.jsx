@@ -64,7 +64,7 @@ App = React.createClass({
 			<div className="container">
 			<div className="row">
     			<div className="four columns">
-    				<img src="logo.png"/>
+    				<img className="logo" src="logo.png"/>
     			</div>
     			<div className="eight columns">
 	    			<header>		
