@@ -1,24 +1,116 @@
 img.logo
-    width: 55%
+    width: 75%
 
+body
+	background-color: #f3f3f3
+.container
+	padding-top: 50px 
 .FuqText
+	font-family: 'Bangers'
+	letter-spacing: 0.2rem
+	margin: 0
 
 .smallText
-	font-size: 70%
+	font-size: 16px
+	margin-top: 8px
+
+#dateInput
+	height: 38px
+	padding-left: 10px
+.creators
+	margin-bottom: 40px
+	p
+		margin: 0
+		font-size: 12px
+		color: #666
+		&:last-child
+			margin-bottom: 30px
+	label
+		color: #777
+		font-size: 10px
+header
+	position: relative
+
+label.sort
+	display: inline-block
+	margin-right: 6px
+.sort-dropdown
+	border: none
+	width: 115px
+	padding-left: 20px
 
 .insertNewText
-	font-size: 150%
-	position: absolute
-	display: inline-block
-
-
-.signInButton
-	position: absolute
-	right: 200px
+	margin: 10px 0 20px
+	font-family: 'Bangers', cursive
+	letter-spacing: 0.2rem
 
 .inputTaskBox
-	width: 450px
-	height: 70px
+	width: 100%	
+.signInButton
+	position: absolute
+	right: 0
+	top: 10px
 
-.set
-	display: inline-block
+
+.task
+	width: 100%
+	padding: 30px 8.7% 0
+	box-sizing: border-box
+	margin-top: 17px 
+	box-shadow: 0px 2px 5px rgba(#000, 0.2)
+	border-radius: 5px
+	overflow: hidden
+	position: relative
+	background-color: #fff
+	strong
+		color: #3498db
+	h4
+		margin-bottom: 17px 
+	hr
+		margin-left: -55px
+		margin-bottom: 0
+		width: calc(100% + 110px)
+	.creator
+		font-size: 14px
+	.verticle-border
+		border-right: 1px solid #ddd
+		p
+			margin-top: 30px
+			margin-bottom: 10px
+		label
+			margin-bottom: 20px
+			color: #3498db
+		.done
+			font-size: 16px
+		
+	.priority
+		position: absolute
+		top: -35px
+		left: -35px
+		background-color: red
+		width: 75px
+		height: 75px
+		border-radius: 50%
+		&.five
+			background-color: #c0392b
+		&.four
+			background-color: #e67e22
+		&.three
+			background-color: #f1c40f
+		&.two
+			background-color: #1abc9c
+		&.one
+			background-color: #bdc3c7
+
+.workers
+	padding-left: 10px
+	p
+		margin: 30px 0 10px
+
+
+
+
+
+
+
+

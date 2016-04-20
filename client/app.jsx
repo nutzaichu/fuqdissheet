@@ -4,7 +4,8 @@ App = React.createClass({
 
 	getInitialState() {
 	    return {
-	      sortBy: 'deadline'
+	      sortBy: 'deadline',
+	      isFormOpen: false
 	    }
 	  },
 	
@@ -59,62 +60,94 @@ App = React.createClass({
 	    ReactDOM.findDOMNode(this.refs.textInput).value = "";
 	},
 
+	toggleForm() {
+		this.setState( {isFormOpen: ! this.state.isFormOpen} )
+	},
+
 	render() {
 		return (
 			<div className="container">
 			<div className="row">
     			<div className="four columns">
     				<img className="logo" src="logo.png"/>
-<<<<<<< HEAD
-    				<p className="FuqText"> Fuq Dis Sheet, <br/> I'm done. </p>
+    				<h2 className="FuqText"> Fuq Dis Sheet, <br/> I'm done. </h2>
     				<p className="smallText"> Your Last To-Do Task Manager </p>
-=======
->>>>>>> ccffae1d94635bddb9fccf3e59ba2b5bade48f51
+    				<div className="creators">
+    					<label>Created by</label>
+    					<p>Jirat Onaree</p>
+    					<p>Napat Changphasuk</p>
+    					<p>Nuttapol Puntavachirapan</p>
+    					<label>Inspired by their sheets</label>
+    				</div>
     			</div>
     			<div className="eight columns">
 	    			<header>		
-		    				<p className="insertNewText">Insert New Task</p>
+		    				<h3 className="insertNewText">All Tasks</h3>
+		    				<button 
+		    					style={{'float': 'right'}} 
+		    					onClick={this.toggleForm}
+		    					className="button-primary"
+		    				>
+		    					{
+		    						this.state.isFormOpen ?
+		    							'x Close' : '+ New Task'
+		    					}
+		    				</button>
 		    				<div className="signInButton">
-							<AccountsUIWrapper />
+								<AccountsUIWrapper />
 							</div>
-						<br/>
-						
-							<input className="inputTaskBox"
-								type="text"
-								ref="textInput"
-								placeholder="I really want to get this done" 
-								/>
-							<br/>
 							
-							<form className="new-task" onSubmit={this.handleSubmit} >
-								<p> Set Due Date : </p>
-								<input 
-								type="date" 
-								ref="deadline"
-								/>
-								<p> Set Priority : </p>
-
-								<select ref="priority">
-								<option value="5">5 - Emergency</option>
-								<option value="4">4 - High Priority</option>
-								<option value="3">3 - Medium Priority</option>
-								<option value="2">2 - Low Priority</option>
-								<option value="1">1 - No Priority</option>
-								</select>
-
-							<input type="submit" value="submit"/>
-							</form>
-						
-						<select ref="sort" onChange={this.handleSort} >
+							{
+								this.state.isFormOpen ?
+									<form className="new-task" onSubmit={this.handleSubmit} >
+									<div className="row" style={{'paddingTop': '5px'}}>
+										<label style={{'color': 'rgb(117,191,232)'}}>Insert New Task</label>
+									</div>
+									  <div className="row">
+									    <div className="six columns">
+									      <label for="exampleEmailInput">Set Due Date</label>
+									      <input 
+									      	className="u-full-width"
+											type="date" 
+											ref="deadline"
+											id="dateInput"
+											/>
+									      
+									    </div>
+									    <div className="six columns">
+									      <label for="exampleRecipientInput">Set Priority</label>
+									      <select className="u-full-width" id="exampleRecipientInput" ref="priority">
+									        <option value="5">5 - Emergency</option>
+											<option value="4">4 - High Priority</option>
+											<option value="3">3 - Medium Priority</option>
+											<option value="2">2 - Low Priority</option>
+											<option value="1">1 - No Priority</option>
+									      </select>
+									      
+									    </div>
+									  </div>
+									  <label for="exampleMessage">Task Detail</label>
+									  <textarea className="u-full-width" className="inputTaskBox"
+										ref="textInput"
+										placeholder="I really want to get this done" ></textarea>
+									  <input className="button-primary" type="submit" value="submit"/>
+									  <hr/>
+								</form> : ''
+							}
+						<label className="sort">Sort By :</label>
+						<select ref="sort" 
+							onChange={this.handleSort} 
+							className="sort-dropdown"
+						>
 						  <option value="deadline">deadline</option>
 						  <option value="priority">priority</option>
 						  <option value="createdAt">dateCreated</option>
 						</select>
 
 					</header>
-					<ul>
+					
 		          {this.renderTasks()}
-		        </ul>
+		        
 
 			    </div>
 			  </div>
