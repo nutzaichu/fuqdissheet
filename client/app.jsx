@@ -65,8 +65,11 @@ App = React.createClass({
 			<div className="row">
     			<div className="four columns">
     				<img className="logo" src="logo.png"/>
+<<<<<<< HEAD
     				<p className="FuqText"> Fuq Dis Sheet, <br/> I'm done. </p>
     				<p className="smallText"> Your Last To-Do Task Manager </p>
+=======
+>>>>>>> ccffae1d94635bddb9fccf3e59ba2b5bade48f51
     			</div>
     			<div className="eight columns">
 	    			<header>		
