@@ -64,11 +64,43 @@ App = React.createClass({
 			<div className="container">
 			<div className="row">
     			<div className="four columns">
-    				<img src="logo.png"/>
+    				<img className="logo" src="logo.png"/>
+    				<p className="FuqText"> Fuq Dis Sheet, <br/> I'm done. </p>
+    				<p className="smallText"> Your Last To-Do Task Manager </p>
     			</div>
     			<div className="eight columns">
 	    			<header>		
-						<AccountsUIWrapper />
+		    				<p className="insertNewText">Insert New Task</p>
+		    				<div className="signInButton">
+							<AccountsUIWrapper />
+							</div>
+						<br/>
+						
+							<input className="inputTaskBox"
+								type="text"
+								ref="textInput"
+								placeholder="I really want to get this done" 
+								/>
+							<br/>
+							
+							<form className="new-task" onSubmit={this.handleSubmit} >
+								<p> Set Due Date : </p>
+								<input 
+								type="date" 
+								ref="deadline"
+								/>
+								<p> Set Priority : </p>
+
+								<select ref="priority">
+								<option value="5">5 - Emergency</option>
+								<option value="4">4 - High Priority</option>
+								<option value="3">3 - Medium Priority</option>
+								<option value="2">2 - Low Priority</option>
+								<option value="1">1 - No Priority</option>
+								</select>
+
+							<input type="submit" value="submit"/>
+							</form>
 						
 						<select ref="sort" onChange={this.handleSort} >
 						  <option value="deadline">deadline</option>
@@ -76,29 +108,6 @@ App = React.createClass({
 						  <option value="createdAt">dateCreated</option>
 						</select>
 
-						<form className="new-task" onSubmit={this.handleSubmit} >
-						
-							<input
-							type="text"
-							ref="textInput"
-							placeholder="Type to add new tasks" 
-							/>
-
-							<input 
-							type="date" 
-							ref="deadline"
-							/>
-
-							<select ref="priority">
-							<option value="5">5 - Emergency</option>
-							<option value="4">4 - High Priority</option>
-							<option value="3">3 - Medium Priority</option>
-							<option value="2">2 - Low Priority</option>
-							<option value="1">1 - No Priority</option>
-							</select>
-
-						<input type="submit" value="submit"/>
-						</form>
 					</header>
 					<ul>
 		          {this.renderTasks()}
