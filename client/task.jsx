@@ -26,6 +26,19 @@
     if(Meteor.userId()) showInput = true;
     else showInput = false;
 
+    var showJoin = false;
+    var showLeave = false;
+    var isExisted = false;
+    var thisWorker  = Meteor.user().username || Meteor.user().profile.name;
+    for(var i=0; i<this.props.task.worker.length; i++){
+      if(this.props.task.worker[i]===thisWorker) {
+        isExisted = true;
+        break;
+      }
+    }
+    if(isExisted) showLeave = true;
+    else showJoin = true;
+
    	var dif = moment(this.props.task.deadline).fromNow();
     var pri = this.props.task.priority
     var priClass = classNames('priority', {five: pri == '5'}, {four: pri == '4'}, {three: pri == '3'}, {two: pri == '2'}, {one: pri == '1'})
@@ -69,8 +82,8 @@
                     <ul>
                       {this.renderWorkers()}
                     </ul>  
-               {showInput ? <button className="join button-primary" onClick={this.joinTask}>Join</button> : ''}
-               {showInput ? <button className="unjoin" onClick={this.unjoinTask}>Leave</button> : ''}
+               {showJoin ? <button className="join button-primary" onClick={this.joinTask}>Join</button> : ''}
+               {showLeave ? <button className="unjoin" onClick={this.unjoinTask}>Leave</button> : ''}
                
                   
                   </div>
