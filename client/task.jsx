@@ -10,8 +10,16 @@
   },
 
   joinTask() {
-	    Meteor.call("addWorker",this.props.task._id);
+	    Meteor.call("joinTask",this.props.task._id);
 	},
+
+  unjoinTask() {
+      Meteor.call("unjoinTask",this.props.task._id);
+  },  
+
+  deleteTask() {
+      Meteor.call("deleteTask",this.props.task._id);
+  },  
 
    render() {
     var showInput = false;
@@ -52,7 +60,10 @@
                     <ul>
                       {this.renderWorkers()}
                     </ul>  
-               {showInput ? <button className="delete" onClick={this.joinTask}>Join</button> : ''}
+               {showInput ? <button className="join" onClick={this.joinTask}>Join</button> : ''}
+               {showInput ? <button className="unjoin" onClick={this.unjoinTask}>Unjoin</button> : ''}
+               {showInput ? <button className="delete" onClick={this.deleteTask}>Delete</button> : ''}
+                  
                   </div>
                 </div>
 

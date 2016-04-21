@@ -71,7 +71,7 @@ App = React.createClass({
     			<div className="four columns">
     				<img className="logo" src="logo.png"/>
     				<h2 className="FuqText"> Fuq Dis Sheet, <br/> I'm done. </h2>
-    				<p className="smallText"> Your Last To-Do Task Manager </p>
+    				<p className="smallText"> Your last task manager </p>
     				<div className="creators">
     					<label>Created by</label>
     					<p>Jirat Onaree</p>
