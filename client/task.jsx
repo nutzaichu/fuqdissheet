@@ -98,7 +98,7 @@
     if (this.props.task.worker.length == 0)
       return <label>No Worker...</label>
     return this.props.task.worker.map(worker => {
-      return <li>{worker}</li>
+      return <li key={worker}>{worker}</li>
     })
    }
  });

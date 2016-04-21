@@ -10,20 +10,24 @@ App = React.createClass({
 	  },
 	
 	getMeteorData() {
+		var sub = Meteor.subscribe("tasks");
 	    if(this.state.sortBy ==='priority'){
 	      	return {
+	      	ready: sub.ready(),
 	      	tasks: Tasks.find({},{sort:{priority: -1}}).fetch(),
 	      	currentUser: Meteor.user()
 	      	}
 	    }
 	    else if(this.state.sortBy==='deadline'){
 	      	return {
+	      	ready: sub.ready(),
 	      	tasks: Tasks.find({},{sort:{deadline: 1}}).fetch(),
 	      	currentUser: Meteor.user()
 	      	}
 	    }
 	    else{
 	      	return {
+	      	ready: sub.ready(),
 	      	tasks: Tasks.find({},{sort:{createdAt: -1}}).fetch(),
 	      	currentUser: Meteor.user()
 	      	}
@@ -146,7 +150,11 @@ App = React.createClass({
 
 					</header>
 					
-		          {this.renderTasks()}
+		          {this.data.ready ? 
+		          		this.renderTasks()
+		          		:
+		          		'Loading Tasks..'
+		          }
 		        
 
 			    </div>
