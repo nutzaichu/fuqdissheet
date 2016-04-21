@@ -29,15 +29,19 @@
     var showJoin = false;
     var showLeave = false;
     var isExisted = false;
-    var thisWorker  = Meteor.user().username || Meteor.user().profile.name;
-    for(var i=0; i<this.props.task.worker.length; i++){
-      if(this.props.task.worker[i]===thisWorker) {
-        isExisted = true;
-        break;
+    
+    if (Meteor.user()) {
+      var thisWorker  = Meteor.user().username || Meteor.user().profile.name;
+
+      for(var i=0; i<this.props.task.worker.length; i++){
+        if(this.props.task.worker[i]===thisWorker) {
+          isExisted = true;
+          break;
+        }
       }
+      if(isExisted) showLeave = true;
+      else showJoin = true;
     }
-    if(isExisted) showLeave = true;
-    else showJoin = true;
 
    	var dif = moment(this.props.task.deadline).fromNow();
     var pri = this.props.task.priority
