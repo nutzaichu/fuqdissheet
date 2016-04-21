@@ -10,8 +10,16 @@
   },
 
   joinTask() {
-	    Meteor.call("addWorker",this.props.task._id);
+	    Meteor.call("joinTask",this.props.task._id);
 	},
+
+  unjoinTask() {
+      Meteor.call("unjoinTask",this.props.task._id);
+  },  
+
+  deleteTask() {
+      Meteor.call("deleteTask",this.props.task._id);
+  },  
 
    render() {
     var showInput = false;
@@ -31,6 +39,15 @@
                   <strong>{this.props.task.username}</strong> &nbsp; 
                   {moment(this.props.task.createdAt).fromNow()} 
                 </p>
+                {showInput ? 
+                    <i className="fa fa-trash delete" 
+                        aria-hidden="true"
+                        onClick={this.deleteTask}
+
+                    >
+                    </i> 
+                    : ''
+                }
                 <hr/>
                 <div className="sub row">
                   <div className="six columns verticle-border">
@@ -52,7 +69,10 @@
                     <ul>
                       {this.renderWorkers()}
                     </ul>  
-               {showInput ? <button className="delete" onClick={this.joinTask}>Join</button> : ''}
+               {showInput ? <button className="join button-primary" onClick={this.joinTask}>Join</button> : ''}
+               {showInput ? <button className="unjoin" onClick={this.unjoinTask}>Leave</button> : ''}
+               
+                  
                   </div>
                 </div>
 
@@ -62,6 +82,8 @@
          )
    },
    renderWorkers() {
+    if (this.props.task.worker.length == 0)
+      return <label>No Worker...</label>
     return this.props.task.worker.map(worker => {
       return <li>{worker}</li>
     })

@@ -27,20 +27,35 @@ Meteor.methods({
 	    });
 	},
 
-	addWorker(taskId){
+	joinTask(taskId){
 		if (! Meteor.userId()) {
 	    	throw new Meteor.Error("not-authorized");
 	    }
-	    var duplicate = false;
+	    var isExisted = false;
 	    const task = Tasks.findOne(taskId);
-	    var newWorker  = Meteor.user().username || Meteor.user().profile.name;
+	    var thisWorker  = Meteor.user().username || Meteor.user().profile.name;
 		for(var i=0; i<task.worker.length; i++){
-			if(task.worker[i]===newWorker) {
-				duplicate = true;
+			if(task.worker[i]===thisWorker) {
+				isExisted = true;
 				break;
 			}
 		}
-		if(!duplicate) Tasks.update(taskId,{$push: { worker: newWorker}});
+		if(!isExisted) Tasks.update(taskId,{$push: { worker: thisWorker}});
+	},
+
+	unjoinTask(taskId){
+		if (! Meteor.userId()) {
+	    	throw new Meteor.Error("not-authorized");
+	    }
+	    var thisWorker = Meteor.user().username || Meteor.user().profile.name;
+	    Tasks.update(taskId,{$pull: {worker: thisWorker}});
+	},
+
+	deleteTask(taskId){
+		if (! Meteor.userId()) {
+	    	throw new Meteor.Error("not-authorized");
+	    }
+		Tasks.remove(taskId);
 	},
 
 	updateProgress(taskId,newProgress){

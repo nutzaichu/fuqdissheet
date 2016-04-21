@@ -50,7 +50,10 @@ label.sort
 	position: absolute
 	right: 0
 	top: 10px
+	text-decoration: none
 
+a#login-name-link.login-link-text
+	text-decoration: none
 
 .task
 	width: 100%
@@ -101,11 +104,26 @@ label.sort
 			background-color: #1abc9c
 		&.one
 			background-color: #bdc3c7
+	.delete
+		position: absolute
+		top: 23px
+		right: 30px
+		cursor: pointer
+		font-size: 20px
+		color: rgba(#000, 0.65)
+		&:hover
+			color: #e74c3c
+	.join
+		margin-right: 12px
 
 .workers
 	padding-left: 10px
 	p
 		margin: 30px 0 10px
+	label
+		font-weight: lighter
+		color: #999
+		font-size: 13px
 
 
 
