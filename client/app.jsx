@@ -139,9 +139,9 @@ App = React.createClass({
 							onChange={this.handleSort} 
 							className="sort-dropdown"
 						>
-						  <option value="deadline">deadline</option>
-						  <option value="priority">priority</option>
-						  <option value="createdAt">dateCreated</option>
+						  <option value="deadline">Deadline</option>
+						  <option value="priority">Priority</option>
+						  <option value="createdAt">Date Created</option>
 						</select>
 
 					</header>
